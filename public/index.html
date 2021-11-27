@@ -1,56 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#317EFB">
-  <link rel="shortcut icon" href="./icons/icon-192x192.png" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="theme-color" content="#317EFB" />
+    <link
+      rel="shortcut icon"
+      href="./icons/icon-192x192.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?&family=Poppins:wght@200;300;400;500&family=Oswald:wght@300;500&display=swap" >
+    <link rel="stylesheet" href="./styles.css" />
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./styles.css">
+    <title>Budget Tracker</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="total">
+        <div class="total">Your total is: $<span id="total">0</span></div>
+      </div>
 
-  <title>Budget Tracker</title>
-</head>
-<body>
-  <div class="wrapper">
-    <div class="total">
-      <div class="total">Your total is: $<span id="total">0</span></div>
+      <div class="form">
+        <input type="text" id="t-name" placeholder="Name of transaction" />
+        <input
+          type="number"
+          min="0"
+          id="t-amount"
+          placeholder="Transaction amount"
+        />
+        <button id="add-btn">
+          <i class="fa fa-plus buttons"></i> Add Funds
+        </button>
+        <button id="sub-btn"><i class="fa fa-minus"></i> Subtract Funds</button>
+        <p class="error"></p>
+      </div>
+
+      <div class="transactions">
+        <table>
+          <thead>
+            <th>Transaction</th>
+            <th>Amount</th>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <canvas id="myChart"></canvas>
     </div>
 
-    <div class="form">
-      <input type="text" id="t-name" placeholder="Name of transaction" />
-      <input type="number" min="0" id="t-amount" placeholder="Transaction amount" />
-      <button id="add-btn"><i class="fa fa-plus buttons"></i> Add Funds</button>
-      <button id="sub-btn"><i class="fa fa-minus"></i> Subtract Funds</button>
-      <p class="error"></p>
-    </div>
-
-    <div class="transactions">
-      <table>
-        <thead>
-          <th>Transaction</th>
-          <th>Amount</th>
-        </thead>
-        <tbody id="tbody">
-          
-        </tbody>
-      </table>
-    </div>
-    
-    <canvas id="myChart"></canvas>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="./index.js"></script>
-  <script type="text/javascript">
-    (function () {
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("./service-worker.js", { scope: "/" })
-          .then(() => console.log("Service Worker registered successfully."))
-          .catch(error => console.log("Service Worker registration failed:", error));
-      }
-    })();
-  </script>
-</body>
+    <div></div>
+    <footer class="footer bg-dark">
+      <section id="cmb-contact" class="text-center py-2 align-items-center">
+        <h4>Contact</h4>
+        <a
+          class="cmb-fa px-4"
+          href="https://www.linkedin.com/in/john-young-bb47a146/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a
+          class="cmb-fa px-4"
+          href="https://github.com/jyoung0613/budget_trackr"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i class="fab fa-github cmb-fa"></i>
+        </a>
+        <a
+          class="cmb-fa px-4"
+          href="mailto:jwyoung0613@gmail.com?subject=Contact from Budget Tracker Site"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i class="fas fa-envelope cmb-fa"></i>
+        </a>
+      </section>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="./index.js"></script>
+    <script type="text/javascript">
+      (function () {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker
+            .register("./service-worker.js", { scope: "/" })
+            .then(() => console.log("Service Worker registered successfully."))
+            .catch((error) =>
+              console.log("Service Worker registration failed:", error)
+            );
+        }
+      })();
+    </script>
+  </body>
 </html>

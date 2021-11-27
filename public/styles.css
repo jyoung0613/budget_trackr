@@ -49,3 +49,45 @@ tr:nth-child(even) {
   width: 90%;
   margin: 0 auto;
 }
+
+a:link,
+a:visited,
+a:hover,
+a:active { 
+    text-decoration: none !important;
+    color: silver;
+}
+
+a:link span,
+a:visited span,
+a:hover span,
+a:active span { 
+    color: skyblue !important;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  border-top: 3pt solid maroon;
+}
+
+.footer p {
+  padding-top: 1em;
+  color: silver;
+
+}
+
+.cmb-contact {
+  background-image: linear-gradient(black, darkgrey);
+  color: silver;
+}
+
+.cmb-madeforyou {
+  background-color: maroon;
+  color: silver;
+}
+
+
