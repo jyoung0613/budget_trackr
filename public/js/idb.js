@@ -12,10 +12,12 @@ function checkForIndexedDb() {
     }
     return true;
 }
+console.log(checkForIndexedDb);
 
 request.onupgradeneeded = ({ target }) => {
     db = target.result;
     const pendingStore = db.createObjectStore('PendingStore', { autoIncrement: true });
+    console.log(pendingStore);
 };
 
 request.onsuccess = ({ target }) => {
@@ -36,6 +38,7 @@ function saveRecord(record) {
 
     store.add(record);
 }
+console.log(saveRecord);
 
 function checkDatabase() {
     const transaction = db.transaction(['PendingStore'], 'readwrite');
