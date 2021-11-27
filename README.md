@@ -3,13 +3,15 @@
 [![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
+
 update an existing budget tracker application to allow for offline access and functionality. The user will be able to add expenses and deposits to their budget with or without a connection. If the user enters transactions offline, the total should be updated when they're brought back online.
 
-## Technologies Used 
+## Technologies Used
+
 - Heroku
 - JavaScript
 - Mongo
-- [MongoDB Atlas] (https://www.mongodb.com/cloud/atlas)
+- [MongoDB Atlas] (<https://www.mongodb.com/cloud/atlas>)
 - Mongoose
 - Node.js
 - [NPM Express.js Package](https://www.npmjs.com/package/express)
@@ -17,7 +19,7 @@ update an existing budget tracker application to allow for offline access and fu
 
 ## Local Installation & Usage
 
-To use this app, you will need a MongoDB account, and to have the app installed on your machine. Documentation with installation instructions are available [here.](https://docs.mongodb.com/manual/installation/) 
+To use this app, you will need a MongoDB account, and to have the app installed on your machine. Documentation with installation instructions are available [here.](https://docs.mongodb.com/manual/installation/)
 
 STEP 1
 
@@ -55,9 +57,11 @@ SCREENSHOT: Homepage, containing funds both added and subtracted while on- and o
 ![Budget Tracker Dashboard After Offline.](/public/images/Budget-Trackr-Screenshot-After-Offline.png)
 
 ## License
+
   This project is licensed under the terms of the following license: **MIT**.
 
 ## Questions
+
   GitHub: [jyoung0613](https://github.com/jyoung0613).  
 
   For inquiries, please contact jwyoung0613@gmail.com.
