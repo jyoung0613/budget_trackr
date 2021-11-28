@@ -45,7 +45,7 @@
     ],
     "orientation": "portrait",
     "display": "standalone",
-    "start_url": "/",
+    "start_url": "/sleepy-tundra-40450.herokuapp.com",
     "description": "An application that allows you to track your withdrawls and deposits.",
     "background_color": "#ffffff",
     "theme_color": "#ffffff"
