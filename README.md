@@ -48,7 +48,7 @@ From the modern browser of your choice, visit:
 
 [This Budget Tracker app has been deployed on Heroku and is available here.](https://sleepy-tundra-40450.herokuapp.com/)
 
-SCREENSHOT: Homepage, containing funds both added and subtracted while on- and off-line.
+SCREENSHOTS: Homepage, containing funds both added and subtracted while on- and off-line.
 
 ![Budget Tracker Dashboard Online.](/public/images/Budget-Trackr-Screenshot-one.png)
 ![Budget Tracker Heroku.](/public/images/Budget-Trackr-Screenshot-Heroku.png)

@@ -1,3 +1,6 @@
+const APP_PREFIX = "BudgetTrackr-";
+const VERSION = "version_01";
+const CACHE_NAME = APP_PREFIX + VERSION;
 const FILES_TO_CACHE = [
     './index.html',
     './index.js',
@@ -8,67 +11,57 @@ const FILES_TO_CACHE = [
     './icons/icon-512x512.png'
 ];
 
-const PRE_CACHE = `pre-cache-v1`;
-const RUNTIME_CACHE = `runtime-cache`;
-
-self.addEventListener(`fetch`, (e) => {
-    if (e.request.method !== `GET` || !e.request.url.startsWith(self.location.origin)) {
-        e.respondWith(fetch(e.request));
-        return;
-    }
-
-    if (e.request.url.includes(`/api/transaction`)) {
-        e.respondWith(caches.open(RUNTIME_CACHE)
-        .then(cache => fetch(e.request) 
-        .then(response => {cache.put(e.request, response.clone());
-            return response;
-        })
-        .catch(() => caches.match(e.request))
-        )
-
-        );
-        return;
-    }
-
-    e.respondWith(caches.match(e.request)
-    .then(cachedResponse => {
-        if (cachedResponse) {
-            return cachedResponse;
+// Respond with cashed resources
+self.addEventListener("fetch", function (e) {
+    console.log("fetch request : " + e.request.url);
+    e.respondWith(
+        caches.match(e.request).then(function (request) {
+            if (request) { // if cache is available, respond with cache
+            console.log("responding with cache : " + e.request.url);
+            return request;
+        } else {
+            // if there are no cache, try fetching request
+            console.log("file is not cached, fetching : " + e.request.url);
+            return fetch(e.request);
         }
-        return caches
-        .open(RUNTIME_CACHE)
-        .then(cache => fetch(e.request)
-        .then(response => cache.put(e.request, response.clone())
-            .then(() => response)
-        ));
-    }));
-});
 
-self.addEventListener(`install`, (e) => {
-    e.waitUntil(
-        caches
-            .open(PRE_CACHE)
-            .then((cache) => cache.addAll(FILES_TO_CACHE))
-            .then(self.skipWaiting())
+        // You can omit if/else for console.log & put one line below like this too.
+        // return request || fetch(e.request)
+        })
     );
 });
 
-self.addEventListener(`activate`, (e) => {
-    const currentCaches = [PRE_CACHE, RUNTIME_CACHE];
+// Cache resources
+self.addEventListener("install", function (e) {
     e.waitUntil(
-        caches
-            .keys()
-            .then((cacheNames) => {
-                return cacheNames.filter((cacheName) => !currentCaches.includes(cacheName));
-            })
-            .then((cachesToDelete) => {
-                return Promise.all(
-                    cachesToDelete.map((cacheToDelete) => {
-                        return caches.delete(cacheToDelete);
-                    })
-                );
-            })
-            .then(() => self.clients.claim())
+        caches.open(CACHE_NAME).then(function (cache) {
+            console.log("installing cache : " + CACHE_NAME);
+            return cache.addAll(FILES_TO_CACHE);
+        })
     );
 });
+
+// Delete outdated caches
+self.addEventListener("activate", function (e) {
+    e.waitUntil(
+      caches.keys().then(function (keyList) {
+        // `keyList` contains all of the cache names under your username.github.io
+        // filter out ones that have this app prefix to create keeplist
+        let cacheKeeplist = keyList.filter(function (key) {
+          return key.indexOf(APP_PREFIX);
+        });
+        // add current cache name to keeplist
+        cacheKeeplist.push(CACHE_NAME);
+  
+        return Promise.all(
+          keyList.map(function (key, i) {
+            if (cacheKeeplist.indexOf(key) === -1) {
+              console.log("deleting cache : " + keyList[i]);
+              return caches.delete(keyList[i]);
+            }
+          })
+        );
+      })
+    );
+  });
 
