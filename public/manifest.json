@@ -1,4 +1,6 @@
 {
+    "name": "Budget Trackr",
+    "short_name": "BudgetTrackr",
     "icons": [
         {
             "src": "icons/icon-72x72.png",
@@ -41,11 +43,9 @@
             "type": "image/png"
         }
     ],
-    "name": "Budget Trackr",
-    "short_name": "BudgetTrackr",
     "orientation": "portrait",
     "display": "standalone",
-    "start_url": "./index.html",
+    "start_url": "/",
     "description": "An application that allows you to track your withdrawls and deposits.",
     "background_color": "#ffffff",
     "theme_color": "#ffffff"
